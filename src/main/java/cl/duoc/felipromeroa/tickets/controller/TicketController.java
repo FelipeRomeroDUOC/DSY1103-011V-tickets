@@ -2,9 +2,7 @@ package cl.duoc.felipromeroa.tickets.controller;
 
 import cl.duoc.felipromeroa.tickets.model.Ticket;
 import cl.duoc.felipromeroa.tickets.service.TicketService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,14 @@ public class TicketController {
     @GetMapping
     public List<Ticket> getAllTickets() {
         return this.service.getTickets();
+    }
+
+    @PostMapping
+    public Ticket create(@RequestBody Ticket ticket){
+        Ticket created = this.service.create(ticket);
+        if (created != null){
+            return created;
+        }
+        return null;
     }
 }
